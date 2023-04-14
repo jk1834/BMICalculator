@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BMI Calculator</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./calc.ico" type="image/x-icon">
+  </head>
+  <body>
+    <main>
+        <div class="header">
+            BMI Calculator
+        </div>
+        <div class="btn-container">
+            <button onclick="showInstr()">Instructions</button>
+            <button onclick="showCalc()">Calculator</button>
+        </div>
+        <div class="content-container">   
+            <div id="instructions_pg">
+                <p>=======================================</p>
+                <p>Instructions</p>
+                <p>=======================================</p>
+
+                <p>Enter a weight (lbs) and height (in) in whole numbers in the range of 5 to 1000 and 1 to 500 respectively.</p>
+                <p>For example, entering a weight of 125 lbs and a height of 63 in yields a BMI of 22.7! But, it must be entered in WHOLE NUMBERS only.</p>
+                <p>Alongside the number, you will also be shown what category your BMI falls under, ranging from Underweight, Normal, Overweight, and Obese.</p>
+                <p>Click on the "Calculator" button to begin!</p>
+            </div>
+
+            <div id="bmicalc_pg" style="display: none">
+                <p>Enter your weight in pounds (lbs): <input id="lb_box" type="number"></p>
+                
+                <p>Enter your height in inches (in): <input id="height_box" type="number"></p>
+                 
+                <button onclick="cal_bmi()">Calculate BMI</button>
+                <p>Your BMI is: <input id="bmi_val"></p>
+                <p>Your BMI classification is: <input id="bmi_class"></p>
+            
+                
+            </div>
+        </div>
+    </main>
+	<script>
+        const pg_list = ["instructions_pg", "bmicalc_pg"];
+        var sheet;
+
+        function showElement(pg) {
+            for(let i = 0; i < pg_list.length; i++) {
+                sheet = document.getElementById(pg);
+                if(pg_list[i] === pg) {
+                    sheet.style.display = "block";
+                }
+                else {
+                    sheet = document.getElementById(pg_list[i]);
+                    sheet.style.display = "none";
+                }
+            }
+        }
+
+        function showInstr() {
+            showElement("instructions_pg");
+        }
+
+        function showCalc() {
+            showElement("bmicalc_pg");
+        }
+
+
+
+
+        function inchToCenti(num) {
+            if (num < 1 || num > 500) {
+                throw new Error("inchtoCenti arguments must be in the range of [1,500].\n");
+            }
+            return num * 0.025;
+        }
+
+        function lbToKg(num) {
+            if (num < 5 || num > 1000) {
+                throw new Error("lbToKg arguments must be in the range of [5,1000].\n");
+            }
+            return num * 0.45;
+        }
+
+        function BMICalc(h, w) {
+            if ((h < 0.025 || h > 12.5) || (w < 2.25 || w > 450.0)) {
+                throw new Error("BMICalc arguments must be in the range of [0.025, 12.5] for h and [2.25, 450.0] for w.\n");
+            }
+            return w / (h * h);
+        }
+
+        function BMIResults(bmi) {
+            if(bmi < 18.5 ) {return "Underweight";}
+            if(bmi >= 18.5 && bmi < 25) {return "Normal Weight";}
+            if(bmi >= 25 && bmi < 30) {return "Overweight";}
+            if(bmi >= 30) {return "Obese";}  
+        }
+
+        function cal_bmi() {
+            var height, weight, bmi;
+            var bmi_class;
+
+            height = inchToCenti(document.getElementById("height_box").value);
+            weight = lbToKg(document.getElementById("lb_box").value);
+
+            bmi = BMICalc(height, weight).toFixed(1);
+
+            bmi_class = BMIResults(bmi);
+
+            document.getElementById("bmi_val").value = bmi;
+            document.getElementById("bmi_class").value = bmi_class;
+        }
+
+    </script>
+  </body>
+</html>
