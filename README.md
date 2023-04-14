@@ -1,10 +1,10 @@
 # BMICalculator
  
 ## Installation
-The installation process for this program is extremely simple. Navigate to the top of the folder, and you should see an executable named ‘BMI.exe’. Click on it, and then click on ‘Download’ on the far right side of the screen. This will put the file in the Downloads folder of your Windows machine. 
+The installation process for this program is extremely simple. Download the repository, and save it wherever you want with whatever filename you desire. 
 
 ## Running the Program
-The only step left is to put the program wherever directory you want it to be and double click it. It will open and the instructions for further use are listed in the program itself.
+The only step left is to put the program wherever directory you want it to be and double click the html file. Hosting the application on a web server is the next priority, but for now, it simply sits in an html file.
 
 ##  Using the Program
-While the instructions are listed plainly and clearly in the program, a short excerpt will be shown here. Upon launching, you will be met with this screen;
+While the instructions are listed plainly and clearly in the program, all it boils down to is inputting two imperial numbers in the boxes, and hitting the calculate button. For more in depth instructions, see the "Instructions" tab on the application itself.
